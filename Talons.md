@@ -1,0 +1,40 @@
+# Overview
+
+- Peregrine Talons are the logic component counterparts for Venia UI components.
+- A Talon is a PWA Studio term for a custom React hook that provides data or performs side effects for a specific UI component.
+- Since they are closely coupled to a specific UI component, these hooks are not re-usable.
+
+## Identifying Talons
+
+- Talons are custom React hooks, so they start with `use` followed by the name of its companion UI component.
+- For example, the [[SearchBar]] component uses the [[useSearchBar()]] talon to get initial values and functions it needs to handle changes in focus or search term value.
+- The `useSearchBar()` talon also keeps track of the component's `expanded` state, which determines how the search bar looks
+
+## Talons versus hooks
+
+- Talons are a PWA Studio concept that represent a specialized type of React hook.
+
+- Peregrine hooks, such as `useDropDown()` and `useWindowSize()` are designed to be re-useable pieces of code, but peregrine talons are designed to fulfill the logic needs of individual Venia UI components.
+- This mean that each talon corresponds to a single Venia component and is not useful outside the component.
+- If a talon needs to use functionlity indentical to another talon, it is provided by a Peregrine hook.
+
+- For example, the functionality provided by the `useHeader()` talon is only relevant to the `Header` component.
+
+## Using talons
+
+- Talons are not re-usable hooks, but they make it easier to work with UI components by providing standard functionality.
+- This lets developers focus on developing the presentation DOM and CSS pieces of a component.
+
+- Venia UI components use talons default, so developers can use Venia UI components as is without worrying about talons.
+- If developers wnat to change how a Venia UI components looks, they can imports its associated talon into a new or modified UI component of the same type.
+
+### Talon props and return object
+
+- Talons use many of the same props as its Venia UI component counterpart.
+- These props are passed into the talon as a single object and are used to generate new values or perform side effects.
+
+- The return value after calling a talon is an API object that UI components can destructure for values to display or assign to events, such as `onClick` or `onHover` functions.
+
+### Example
+
+- Example
